@@ -1,11 +1,11 @@
 body {
     margin: 0;
     background: linear-gradient(135deg, #3b0b5c, #6a1b9a);
-    color: white;
+    color: rgb(4, 8, 59);
 }
 h5,h6{
-    color: azure;
+    color: rgb(3, 2, 44);
 }
 offcanvas-body{
-    color: azure
+    color: rgb(10, 19, 134)
 }
