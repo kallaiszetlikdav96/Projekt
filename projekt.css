@@ -9,3 +9,8 @@ h5,h6{
 offcanvas-body{
     color: rgb(10, 19, 134)
 }
+.jobb{
+    display: inline;      
+    margin-right: -240px;
+    height: 900px;
+}
