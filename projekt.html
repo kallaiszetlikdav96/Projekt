@@ -1,94 +1,133 @@
-<!DOCTYPE html>
-<html lang="en">
+  <!DOCTYPE html>
+<html lang="hu">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <link rel="stylesheet" href="projekt.css  ">
-    <title>Turr music</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Turr Music</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0f0f0f;
+            color: #e6e6e6;
+            padding-bottom: 110px;
+        }
+
+        .navbar-custom {
+            background: #1a1a1a;
+            padding: 1rem 1.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        .navbar-brand {
+            font-size: 1.7rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #1db954 !important;
+        }
+
+        .search-wrapper input {
+            background-color: #2a2a2a;
+            border: none;
+            color: white;
+            border-radius: 40px;
+            padding: 0.5rem 1rem;
+        }
+
+        .sidebar-card {
+            background: #141414;
+            border-radius: 16px;
+            padding: 1rem;
+        }
+
+        .playlist-item {
+            background: #1f1f1f;
+            margin-bottom: 8px;
+            padding: 12px;
+            border-radius: 40px;
+            cursor: pointer;
+        }
+
+        .album-card {
+            background: #171717;
+            border-radius: 16px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .album-img {
+            width: 100%;
+            border-radius: 12px;
+        }
+
+        .music-player {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: #0c0c0c;
+            padding: 12px;
+        }
+    </style>
 </head>
-<body style=" background: linear-gradient(15deg, #160215, #9d00ff)">
-    <nav class="navbar bg-body-tertiary rounded">
-        <div class="container-fluid">
-          <form class="d-flex mx-auto w-50 p-1 " style="background: linear-gradient(15deg, #a01c99, #340253) " role="Kereső">
-            <input class="form-control me-2" type="search" placeholder="Kereső" aria-label="Kereső"/>
-            <button class="btn btn-outline-dark button d-flex object-fit-contain border rounded" type="submit"><img src="search-12-xxl-removebg-preview.png" class="d-flex" style="width: 115%; height: 25px;" alt=""></button>
-          </form>
+<body>
+
+<nav class="navbar-custom d-flex justify-content-between">
+    <div class="navbar-brand">
+        <i class="fas fa-headphones"></i> Turr Music
+    </div>
+
+    <div class="search-wrapper">
+        <input type="search" placeholder="Keresés...">
+    </div>
+
+    <i class="fas fa-user-circle fa-2x"></i>
+</nav>
+
+<div class="container mt-4">
+    <div class="row">
+
+        <div class="col-md-3">
+            <div class="sidebar-card">
+                <h5>Lejátszási lista</h5>
+                <div class="playlist-item">INTERREGNUM</div>
+                <div class="playlist-item">Orgonabokor</div>
+            </div>
         </div>
-      </nav>      
-    
-   
-      <div style="width:60%; padding:15px;" class="mx-auto">
-        <h2 style="text-align:center;">Témák</h2>
-        <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:20px;">
-            <div style="background:#7e57c2; height:80px;"> kep:</div>
-            <div style="background:#7e57c2; height:80px;"> kep:</div>
-            <div style="background:#7e57c2; height:80px;"> kep:</div>
-            <div style="background:#7e57c2; height:80px;"> kep:</div>
-            <div style="background:#7e57c2; height:80px;"> kep:</div>
-            <div style="background:#7e57c2; height:80px;"> kep:</div>
-            <div style="background:#7e57c2; height:80px;"> kep:</div>
-            <div style="background:#7e57c2; height:80px;"> kep:</div>
+
+        <div class="col-md-6">
+            <h3>Népszerű albumok</h3>
+
+            <div class="album-card">
+                <img class="album-img" src="https://picsum.photos/300">
+                <div>Interregnum</div>
+                <small>Beton.Hofi</small>
+            </div>
         </div>
-      </div>
 
+        <div class="col-md-3">
+            <h5>Most megy</h5>
+            <img src="https://picsum.photos/200">
+            <p>Interregnum - Krúbi</p>
+        </div>
 
-          <div class="border border-dark float-left" style="width:16%; padding:10px; background:#5e35b1;">
-            <div style="margin-bottom:10px;">INTERREGNUM</div>
-            <div style="margin-bottom:10px;">Orgonabokor</div>
-            <div style="margin-bottom:10px;">Ha meghalok se</div>
-            <div style="margin-bottom:10px;">III Krúbi</div>
-            <div style="margin-bottom:10px;">Mulatós</div>
-            <div style="margin-bottom:10px;">Extázis</div>
-            <div style="margin-bottom:10px;">Carpe Diem</div>
-        </div> 
-
-<div class="jobb" style="display:flex; float:right;" >
-    <div class="float-right" style="width:200%; padding:120px; background:#5e35b1;  ">     
-      <div style="background:#e53935; padding:60px; border-radius:10px; margin-bottom:50px;">
-          White girl musics
-      </div>
-      <div class="float-right" style="margin-bottom:15px;">
-          <b>Most megy</b><br>
-          California gurls<br>
-          Katy Parry
-          <b>Következők</b>
-          <div style="background:#9575cd; height:30px; margin-top:10px;"></div>
-          <div style="background:#9575cd; height:30px; margin-top:10px;"></div>
-      </div>
-  </div>
+    </div>
 </div>
 
-
-<div class="mx-auto">
-        <h3 >Tekints vissza</h3>
-        <div style="display:flex; gap:10px;">
-            <div style="background:#9575cd; width:80px; height:80px;"></div>
-            <div style="background:#9575cd; width:80px; height:80px;"></div>
-            <div style="background:#9575cd; width:80px; height:80px;"></div>
-            <div style="background:#9575cd; width:80px; height:80px;"></div>
-            <div style="background:#9575cd; width:80px; height:80px;"></div>
-            <div style="background:#9575cd; width:80px; height:80px;"></div>
-        </div>
-      </div>
-
-         <div class="mx-auto">
-        <h3>Ezek is tetszhetnek</h3>
-      </div>
-        <div style="display:flex; gap:10px;">
-            <div style="background:#b39ddb; width:80px; height:80px;"></div>
-            <div style="background:#b39ddb; width:80px; height:80px;"></div>
-            <div style="background:#b39ddb; width:80px; height:80px;"></div>
-            <div style="background:#b39ddb; width:80px; height:80px;"></div>
-            <div style="background:#b39ddb; width:80px; height:80px;"></div>
-            <div style="background:#b39ddb; width:80px; height:80px;"></div>
-        </div>
+<div class="music-player">
+    <button>⏮</button>
+    <button>▶</button>
+    <button>⏭</button>
 </div>
-<footer>
-  <div style="position:fixed; bottom:0; width:100%; background:#4a148c; padding:10px;">
-    <div>California gurls - Katy Parry</div>
-    <input type="range" style="width:100%;">
-</div>
-</footer>
-</html>
- 
+
+</body>
+</html>      
