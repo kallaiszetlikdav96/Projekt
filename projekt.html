@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="hu">
 <head>
     <meta charset="UTF-8">
@@ -12,13 +12,14 @@
             padding: 0;
             box-sizing: border-box;
         }
-
+ 
         body {
             background: #0f0f0f;
             color: #e6e6e6;
-            padding-bottom: 110px;
+            padding-bottom: 110px; /* hely a fix playernek */
         }
-
+ 
+        /* navbar  */
         .navbar-custom {
             background: #1a1a1a;
             padding: 1rem 1.5rem;
@@ -28,14 +29,22 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.5);
             border-bottom: 1px solid #2a2a2a;
         }
-
         .navbar-brand {
             font-size: 1.7rem;
             font-weight: 700;
             letter-spacing: 1px;
             color: #1db954 !important;
         }
-
+        .navbar-brand i {
+            margin-right: 8px;
+            color: #1db954;
+        }
+ 
+        /* Keresősáv  */
+        .search-wrapper {
+            max-width: 400px;
+            width: 100%;
+        }
         .search-wrapper input {
             background-color: #2a2a2a;
             border: none;
@@ -43,91 +52,509 @@
             border-radius: 40px;
             padding: 0.5rem 1rem;
         }
-
+        .search-wrapper input::placeholder {
+            color: #aaa;
+        }
+        .search-wrapper .btn-outline-light {
+            border-radius: 40px;
+            border-color: #3a3a3a;
+        }
+ 
+        /* oldalsáv és lejátszási lista */
         .sidebar-card {
             background: #141414;
             border-radius: 16px;
             padding: 1rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            border: 1px solid #262626;
         }
-
+        .playlist-title {
+            color: #1db954;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            border-left: 4px solid #1db954;
+            padding-left: 10px;
+        }
         .playlist-item {
             background: #1f1f1f;
             margin-bottom: 8px;
-            padding: 12px;
+            padding: 12px 14px;
             border-radius: 40px;
+            transition: all 0.2s ease;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.9rem;
+            font-weight: 500;
         }
-
+        .playlist-item i {
+            color: #1db954;
+            width: 24px;
+            font-size: 1rem;
+        }
+        .playlist-item:hover {
+            background: #2c2c2c;
+            transform: translateX(4px);
+        }
+ 
+        /* Album kártyák */
         .album-card {
             background: #171717;
             border-radius: 16px;
             padding: 12px;
+            transition: all 0.25s;
+            cursor: pointer;
             text-align: center;
+            border: 1px solid #2a2a2a;
         }
-
+        .album-card:hover {
+            background: #252525;
+            transform: translateY(-6px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.4);
+        }
         .album-img {
             width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
             border-radius: 12px;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
         }
-
+        .album-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .album-artist {
+            font-size: 0.75rem;
+            color: #b0b0b0;
+            margin-top: 4px;
+        }
+ 
+        /*  görgetős cucc  */
+        .scroll-horizontal {
+            display: flex;
+            overflow-x: auto;
+            gap: 16px;
+            padding-bottom: 12px;
+            scrollbar-width: thin;
+        }
+        .scroll-horizontal::-webkit-scrollbar {
+            height: 6px;
+        }
+        .scroll-horizontal::-webkit-scrollbar-thumb {
+            background: #3a3a3a;
+            border-radius: 10px;
+        }
+        .small-card {
+            min-width: 140px;
+            background: #181818;
+            border-radius: 14px;
+            padding: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+            text-align: center;
+        }
+        .small-card:hover {
+            background: #282828;
+            transform: scale(0.98);
+        }
+        .small-card img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 8px;
+        }
+ 
+        /* most megy */
+        .now-playing-card {
+            background: #121212;
+            border-radius: 24px;
+            padding: 1.2rem;
+            text-align: center;
+            border: 1px solid #2c2c2c;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+        .cover-large {
+            width: 100%;
+            max-width: 220px;
+            border-radius: 18px;
+            margin: 0 auto 1rem;
+            box-shadow: 0 12px 25px rgba(0,0,0,0.6);
+            display: block;
+        }
+        .queue-item {
+            background: #1c1c1c;
+            padding: 12px 15px;
+            border-radius: 40px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .queue-item:hover {
+            background: #2c2c2c;
+            transform: translateX(5px);
+        }
+        .queue-cover {
+            width: 44px;
+            height: 44px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+ 
+        /* FIXED PLAYER */
         .music-player {
             position: fixed;
             bottom: 0;
+            left: 0;
             width: 100%;
             background: #0c0c0c;
-            padding: 12px;
+            backdrop-filter: blur(12px);
+            background-color: rgba(10, 10, 10, 0.96);
+            border-top: 1px solid #2b2b2b;
+            padding: 12px 20px;
+            z-index: 1050;
+        }
+        .player-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .track-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 200px;
+        }
+        .track-cover {
+            width: 52px;
+            height: 52px;
+            border-radius: 8px;
+            object-fit: cover;
+            background: #2a2a2a;
+        }
+        .track-details {
+            overflow: hidden;
+        }
+        .track-name {
+            font-weight: 700;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .track-artist {
+            font-size: 0.7rem;
+            color: #aaa;
+        }
+        .player-controls {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .ctrl-btn {
+            background: transparent;
+            border: none;
+            color: #ddd;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.15s;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .ctrl-btn:hover {
+            color: #1db954;
+            background: #282828;
+            transform: scale(1.05);
+        }
+        .play-btn-lg {
+            background: #1db954;
+            color: black;
+            font-size: 1.8rem;
+            width: 50px;
+            height: 50px;
+        }
+        .play-btn-lg:hover {
+            background: #1ed760;
+            color: #000;
+            transform: scale(1.02);
+        }
+        .progress-slider {
+            flex: 1;
+            min-width: 180px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        input[type="range"] {
+            flex: 1;
+            height: 4px;
+            -webkit-appearance: none;
+            background: #3e3e3e;
+            border-radius: 5px;
+        }
+        input[type="range"]:focus {
+            outline: none;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 12px;
+            height: 12px;
+            background: #1db954;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .time-text {
+            font-size: 0.7rem;
+            color: #aaa;
+            font-family: monospace;
+        }
+        /* reszponzív */
+        @media (max-width: 768px) {
+            .player-inner {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .progress-slider {
+                width: 100%;
+            }
+            .sidebar-card {
+                margin-bottom: 20px;
+            }
+        }
+        .like-icon {
+            cursor: pointer;
+            transition: 0.1s;
+        }
+        .like-icon:hover {
+            color: #1db954;
+        }
+        [onclick] {
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
-
-<nav class="navbar-custom d-flex justify-content-between">
+<nav class="navbar-custom d-flex flex-wrap align-items-center justify-content-between">
     <div class="navbar-brand">
         <i class="fas fa-headphones"></i> Turr Music
     </div>
-
-    <div class="search-wrapper">
-        <input type="search" placeholder="Keresés...">
+    <div class="search-wrapper d-flex">
+        <input type="search" class="form-control me-2" placeholder="Keresés előadóra, albumra..." aria-label="Keresés">
+        <button class="btn btn-outline-light ml-2" type="button"><i class="fas fa-search"></i></button>
     </div>
-
-    <i class="fas fa-user-circle fa-2x"></i>
+    <div>
+        <i class="fas fa-user-circle fa-2x text-light" style="opacity: 0.8;"></i>
+    </div>
 </nav>
-
-<div class="container mt-4">
-    <div class="row">
-
-        <div class="col-md-3">
+ 
+<div class="container-fluid mt-4 px-3 px-md-4">
+    <div class="row g-4">
+        <!-- BAL OLDAL - Lejátszási lista -->
+        <div class="col-md-3 col-lg-2">
             <div class="sidebar-card">
-                <h5>Lejátszási lista</h5>
-                <div class="playlist-item">INTERREGNUM</div>
-                <div class="playlist-item">Orgonabokor</div>
+                <div class="playlist-title">
+                    <i class="fas fa-list-ul mr-2"></i> Lejátszási lista
+                </div>
+                <ul class="list-unstyled m-0">
+                    <li class="playlist-item" data-info="demo">
+                        <i class="fas fa-music"></i> INTERREGNUM
+                    </li>
+                    <li class="playlist-item">
+                        <i class="fas fa-music"></i> Orgonabokor
+                    </li>
+                    <li class="playlist-item">
+                        <i class="fas fa-music"></i> Ha meghalok se
+                    </li>
+                    <li class="playlist-item">
+                        <i class="fas fa-music"></i> III Krúbi
+                    </li>
+                    <li class="playlist-item">
+                        <i class="fas fa-music"></i> Mulatós Retro
+                    </li>
+                    <li class="playlist-item">
+                        <i class="fas fa-music"></i> Extázis
+                    </li>
+                    <li class="playlist-item">
+                        <i class="fas fa-music"></i> Carpe Diem
+                    </li>
+                </ul>
             </div>
         </div>
-
-        <div class="col-md-6">
-            <h3>Népszerű albumok</h3>
-
-            <div class="album-card">
-                <img class="album-img" src="https://picsum.photos/300">
-                <div>Interregnum</div>
-                <small>Beton.Hofi</small>
+ 
+        <!-- KÖZÉPSŐ RÉSZ: Népszerű albumok és ajánlók -->
+        <div class="col-md-6 col-lg-7">
+            <!-- Népszerű albumok  -->
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h3 class="mb-0" style="font-weight: 600;"><i class="fas fa-fire text-success"></i> Népszerű albumok</h3>
+            </div>
+            <div class="row row-cols-2 row-cols-sm-3 row-cols-md-3 g-3 mb-5">
+                <div class="col">
+                    <div class="album-card">
+                        <img class="album-img" src="https://picsum.photos/id/104/300/300" alt="Interregnum">
+                        <div class="album-title">Interregnum</div>
+                        <div class="album-artist">Beton.Hofi</div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="album-card">
+                        <img class="album-img" src="https://picsum.photos/id/15/300/300" alt="After Hours">
+                        <div class="album-title">After Hours</div>
+                        <div class="album-artist">The Weeknd</div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="album-card">
+                        <img class="album-img" src="https://picsum.photos/id/33/300/300" alt="Memento">
+                        <div class="album-title">Memento</div>
+                        <div class="album-artist">Azahriah</div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="album-card">
+                        <img class="album-img" src="https://picsum.photos/id/26/300/300" alt="Playban">
+                        <div class="album-title">Playban</div>
+                        <div class="album-artist">Beton.Hofi</div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="album-card">
+                        <img class="album-img" src="https://picsum.photos/id/42/300/300" alt="Adisz Abeba">
+                        <div class="album-title">Adisz Abeba</div>
+                        <div class="album-artist">Desh</div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="album-card">
+                        <img class="album-img" src="https://picsum.photos/id/119/300/300" alt="Future Nostalgia">
+                        <div class="album-title">Future Nostalgia</div>
+                        <div class="album-artist">Dua Lipa</div>
+                    </div>
+                </div>
+            </div>
+ 
+            <!-- Tekints vissza (vízszintes görgetős) -->
+            <h4 class="mt-2"><i class="fas fa-history"></i> Tekints vissza</h4>
+            <div class="scroll-horizontal mb-4">
+                <div class="small-card">
+                    <img src="https://picsum.photos/id/132/200/200" alt="Mulatós Mix">
+                    <div class="album-title">Mulatós Mix</div>
+                    <div class="album-artist">Retro party</div>
+                </div>
+                <div class="small-card">
+                    <img src="https://picsum.photos/id/91/200/200" alt="Techno Gym">
+                    <div class="album-title">Techno Gym</div>
+                    <div class="album-artist">Electronic</div>
+                </div>
+                <div class="small-card">
+                    <img src="https://picsum.photos/id/12/200/200" alt="Chill Vibes">
+                    <div class="album-title">Chill Vibes</div>
+                    <div class="album-artist">Lofi Girl</div>
+                </div>
+                <div class="small-card">
+                    <img src="https://picsum.photos/id/144/200/200" alt="Top 50 Hungary">
+                    <div class="album-title">Top 50 Hungary</div>
+                    <div class="album-artist">Magyar slágerek</div>
+                </div>
+            </div>
+ 
+            <!-- Ezek is tetszhetnek -->
+            <h4><i class="fas fa-thumbs-up"></i> Ezek is tetszhetnek</h4>
+            <div class="scroll-horizontal">
+                <div class="small-card">
+                    <img src="https://picsum.photos/id/119/200/200" alt="Rock Classics">
+                    <div class="album-title">Rock Classics</div>
+                    <div class="album-artist">Queen, Led Zep</div>
+                </div>
+                <div class="small-card">
+                    <img src="https://picsum.photos/id/22/200/200" alt="Lo-Fi Study">
+                    <div class="album-title">Lo-Fi Study</div>
+                    <div class="album-artist">Beats to relax</div>
+                </div>
+                <div class="small-card">
+                    <img src="https://picsum.photos/id/162/200/200" alt="Vintage Pop">
+                    <div class="album-title">Vintage Pop</div>
+                    <div class="album-artist">80s 90s</div>
+                </div>
+                <div class="small-card">
+                    <img src="https://picsum.photos/id/155/200/200" alt="Hip Hop Flow">
+                    <div class="album-title">Hip Hop Flow</div>
+                    <div class="album-artist">Krúbi, Desh</div>
+                </div>
             </div>
         </div>
-
-        <div class="col-md-3">
-            <h5>Most megy</h5>
-            <img src="https://picsum.photos/200">
-            <p>Interregnum - Krúbi</p>
+ 
+        <!-- Most megy és következők -->
+        <div class="col-md-3 col-lg-3">
+            <div class="now-playing-card">
+                <h5 class="mb-2"><i class="fas fa-play-circle text-success"></i> Most megy</h5>
+                <img class="cover-large" src="https://picsum.photos/id/104/300/300" alt="Current cover" id="demoCover">
+                <div class="mt-2">
+                    <strong style="font-size: 1.1rem;">Interregnum</strong>
+                    <p class="text-muted mb-1">Krúbi</p>
+                    <div class="d-flex justify-content-center gap-3 mt-2">
+                        <i class="far fa-heart like-icon" style="font-size: 1.3rem;"></i>
+                        <span class="text-muted small">❤️ 124</span>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-4">
+                <h6 class="mb-3"><i class="fas fa-forward-step"></i> Következők</h6>
+                <div class="queue-item">
+                    <img class="queue-cover" src="https://picsum.photos/id/100/100/100" alt="track">
+                    <div><strong>Teenage Dream</strong><br><small class="text-muted">Katy Perry</small></div>
+                </div>
+                <div class="queue-item">
+                    <img class="queue-cover" src="https://picsum.photos/id/135/100/100" alt="track">
+                    <div><strong>Blinding Lights</strong><br><small class="text-muted">The Weeknd</small></div>
+                </div>
+                <div class="queue-item">
+                    <img class="queue-cover" src="https://picsum.photos/id/29/100/100" alt="track">
+                    <div><strong>Dark Horse</strong><br><small class="text-muted">Katy Perry</small></div>
+                </div>
+            </div>
         </div>
-
     </div>
 </div>
-
+ 
+<!-- lenti LEJÁTSZÓ SÁV -->
 <div class="music-player">
-    <button>⏮</button>
-    <button>▶</button>
-    <button>⏭</button>
+    <div class="player-inner">
+        <div class="track-info">
+            <img class="track-cover" src="https://picsum.photos/id/104/100/100" alt="cover">
+            <div class="track-details">
+                <div class="track-name">Interregnum</div>
+                <div class="track-artist">Krúbi</div>
+            </div>
+            <i class="far fa-heart like-icon ms-2" style="font-size: 1.1rem;"></i>
+        </div>
+        <div class="player-controls">
+            <button class="ctrl-btn" title="Előző"><i class="fas fa-backward-step"></i></button>
+            <button class="ctrl-btn play-btn-lg" title="Lejátszás / szünet"><i class="fas fa-play"></i></button>
+            <button class="ctrl-btn" title="Következő"><i class="fas fa-forward-step"></i></button>
+        </div>
+        <div class="progress-slider">
+            <span class="time-text">1:24</span>
+            <input type="range" value="38" min="0" max="100">
+            <span class="time-text">3:52</span>
+        </div>
+        <div class="ctrl-btn" style="font-size: 1.2rem;">
+            <i class="fas fa-volume-up"></i>
+        </div>
+    </div>
 </div>
-
-</body>
-</html>      
+   
